@@ -1,0 +1,35 @@
+{
+  "name": "chess-challenge",
+  "version": "1.0.0",
+  "description": "A Node + React project for the knight chess piece movement challenge.",
+  "main": "app.js",
+  "engines": {
+    "node": "11.14.0",
+    "npm": "6.7.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagocamposde/chess-challenge.git"
+  },
+  "author": "Thiago de Campos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiagocamposde/chess-challenge/issues"
+  },
+  "homepage": "https://github.com/thiagocamposde/chess-challenge#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.2",
+    "standard": "^14.3.1"
+  }
+}
