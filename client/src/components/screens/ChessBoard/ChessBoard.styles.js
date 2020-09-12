@@ -1,41 +1,16 @@
-import { withStyles } from "@material-ui/styles";
-import CraftingTool from "./ChessBoard";
+import { withStyles } from '@material-ui/styles';
+import ChessBoard from './ChessBoard';
 
 const styles = (theme) => {
   return {
-    root: {
-      marginTop: "64px",
-      padding: "20px",
-    },
-    loss: {
-      color: "red",
-    },
-    profit: {
-      color: "green",
-    },
-    filtersContainer: {
-      display: "flex",
-      marginTop: "10px",
-      marginBottom: "10px",
-      "& > div": {
-        flexGrow: 1,
-        marginRight: "10px",
-      },
-      "& > div:last-child": {
-        marginRight: "0px",
-      },
-    },
-    searchbar: {
-      display: "flex",
-      "& > div": {
-        flexGrow: 1,
-        marginRight: "10px",
-      },
-      "& > button": {
-        flexGrow: 0,
-      },
-    },
+    boardRoot: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(8, 70px)',
+      gridTemplateRows: 'repeat(8, 70px)',
+      gridColumnGap: 0,
+      gridRowGap: 0
+    }
   };
 };
 
-export default withStyles(styles)(CraftingTool);
+export default withStyles(styles)(ChessBoard);
