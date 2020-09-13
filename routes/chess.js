@@ -1,17 +1,9 @@
-const express = require("express");
-const axios = require("axios");
-const util = require("util");
+const express = require('express');
+const axios = require('axios');
+const util = require('util');
+const { algebraicToXY, xyToAlgebraic } = require('../shared/BoardHelper');
 
 const router = express.Router();
-
-const algebraicMap = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8 };
-
-const algebraicToXY = (algPosition) => {
-  const x = algPosition.charAt(0);
-  const y = parseInt(algPosition.charAt(1));
-
-  return { x: algebraicMap[x], y: y };
-};
 
 const possibleMovements = [
   { x: +2, y: -1 },
@@ -21,7 +13,7 @@ const possibleMovements = [
   { x: +1, y: +2 },
   { x: +1, y: -2 },
   { x: -1, y: +2 },
-  { x: -1, y: -2 },
+  { x: -1, y: -2 }
 ];
 
 const calcAllowedMovies = (startPosition, chessPiece) => {
@@ -32,7 +24,7 @@ const calcAllowedMovies = (startPosition, chessPiece) => {
     // calc new final position based on piece possible movements
     const targetNewPosition = {
       x: startPosition.x + possibleMovements[i].x,
-      y: startPosition.y + possibleMovements[i].y,
+      y: startPosition.y + possibleMovements[i].y
     };
 
     // given a target new position, checks if that position belongs to the limits of the board
@@ -43,18 +35,18 @@ const calcAllowedMovies = (startPosition, chessPiece) => {
       targetNewPosition.y <= 8;
 
     if (isValidNewPosition) {
-      allowedMoves.push(targetNewPosition);
+      allowedMoves.push(xyToAlgebraic(targetNewPosition));
     }
   }
 
   return allowedMoves;
 };
 
-router.get("/movements/:piece/:position", async (req, res) => {
+router.get('/movements/:piece/:position', async (req, res) => {
   const { piece, position } = req.params;
 
-  console.log("piece", piece);
-  console.log("position", position);
+  console.log('piece', piece);
+  console.log('position', position);
 
   const startPosition = position;
 
@@ -62,7 +54,7 @@ router.get("/movements/:piece/:position", async (req, res) => {
 
   let response = calcAllowedMovies(startPositionXY, piece);
 
-  console.log("response", response);
+  console.log('response', response);
 
   res.send(response);
 });
