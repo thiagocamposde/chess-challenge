@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +8,11 @@ import createStyles from './Square.styles';
 const Square = (props) => {
   const classes = createStyles(props);
 
-  return <div className={classes.rootSquare}></div>;
+  return (
+    <div className={classes.rootSquare}>
+      <p>{props.children}</p>
+    </div>
+  );
 };
 
 export default Square;
