@@ -75,23 +75,18 @@ const ChessBoard = ({ baseUrl, classes }) => {
   });
 
   useEffect(() => {
-    console.log('aqui... 2');
-  }, [board]);
-
-  useEffect(() => {
-    console.log('aqui... 1');
+    console.log('useEffect... 1');
     createBoard();
   }, []);
 
   const createBoard = async () => {
-    let board = [];
+    let boardCopy = { ...board2 };
 
-    const randomPos = Object.keys(board2)[Math.floor(Math.random() * 64)];
+    const randomPos = Object.keys(boardCopy)[Math.floor(Math.random() * 64)];
     console.log('random', 'randomPos');
 
-    setKnightPosition('A1');
-
-    board2[randomPos].color = 'darkGray3';
+    setKnightPosition(randomPos);
+    boardCopy[randomPos].piece = 'knight';
 
     const nextAllowedMovements = await fetchNextAllowedMovements(
       'knight',
@@ -100,10 +95,11 @@ const ChessBoard = ({ baseUrl, classes }) => {
 
     nextAllowedMovements.forEach((allowedMove) => {
       console.log('allowedMove', allowedMove);
-      board2[allowedMove].color = 'nextMoveSquare';
+      boardCopy[allowedMove].isNextMove = true;
     });
 
-    setBoard(board);
+    setBoard(boardCopy);
+    setAllowedMoves(nextAllowedMovements);
   };
 
   const fetchNextAllowedMovements = async (piece, pos) => {
@@ -114,17 +110,47 @@ const ChessBoard = ({ baseUrl, classes }) => {
     // setAllowedMoves(response.data);
   };
 
+  const handleSquareClick = async (position, square) => {
+    console.log('position', position);
+    console.log('square', square);
+    if (square.isNextMove) {
+      const boardCopy = { ...board2 };
+      boardCopy[knightPosition].piece = null;
+      boardCopy[position].piece = 'knight';
+      setKnightPosition(position);
+
+      allowedMoves.forEach((position) => {
+        boardCopy[position].isNextMove = false;
+      });
+      const nextAllowedMovements = await fetchNextAllowedMovements(
+        'knight',
+        position
+      );
+
+      setAllowedMoves(nextAllowedMovements);
+
+      nextAllowedMovements.forEach((allowedMove) => {
+        console.log('allowedMove', allowedMove);
+        boardCopy[allowedMove].isNextMove = true;
+      });
+      setBoard2(boardCopy);
+    }
+  };
+
   return (
     <div className={classes.boardRoot}>
-      {/* {board.map((row) => {
-        return row.map((square) => {
-          return square;
-        });
-      })} */}
       {Object.keys(board2).map((key) => {
-        const position = board2[key];
-
-        return <Square color={position.color} />;
+        const square = board2[key];
+        console.log('render');
+        console.log('square', square);
+        return (
+          <Square
+            onClick={() => handleSquareClick(key, board2[key])}
+            color={square.color}
+            piece={square.piece}
+            isNextMove={square.isNextMove}
+          />
+        );
       })}
     </div>
   );

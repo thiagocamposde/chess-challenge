@@ -9,7 +9,7 @@ const theme = createMuiTheme({
     darkGray3: '#0D0D0D',
     darkSquare: '#8d775f',
     lightSquare: '#F1F0CC',
-    nextMoveSquare: '#A71D31'
+    nextMove: '#A71D31'
   },
   palette: {
     text: {
