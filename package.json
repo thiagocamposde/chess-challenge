@@ -4,14 +4,15 @@
   "description": "A Node + React project for the knight chess piece movement challenge.",
   "main": "app.js",
   "engines": {
-    "node": "11.14.0",
-    "npm": "6.7.0"
+    "node": "12.18.4",
+    "npm": "6.14.6"
   },
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test-dev": "jest",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
@@ -33,5 +34,8 @@
     "lodash": "^4.17.20",
     "nodemon": "^1.19.2",
     "standard": "^14.3.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
   }
 }
