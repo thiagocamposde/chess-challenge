@@ -26,9 +26,11 @@ const ChessBoard = (props) => {
 
     const nextMoves = await fetchAllowedMovements('knight', randomPosition);
 
-    nextMoves.forEach((allowedMove) => {
-      newBoard[allowedMove].isNextMove = true;
-    });
+    if (nextMoves) {
+      nextMoves.forEach((allowedMove) => {
+        newBoard[allowedMove].isNextMove = true;
+      });
+    }
 
     setBoard(newBoard);
   };
@@ -38,7 +40,7 @@ const ChessBoard = (props) => {
       const response = await getNextMovements(piece, pos);
       return response.data;
     } catch (error) {
-      alert('Ocorreu um erro no servidor =(');
+      console.log(error.message);
     }
   };
 
@@ -47,11 +49,14 @@ const ChessBoard = (props) => {
       const newBoard = _.cloneDeep(defaultBoard);
 
       newBoard[position].piece = 'knight';
+
       const nextMoves = await fetchAllowedMovements('knight', position);
 
-      nextMoves.forEach((position) => {
-        newBoard[position].isNextMove = true;
-      });
+      if (nextMoves) {
+        nextMoves.forEach((position) => {
+          newBoard[position].isNextMove = true;
+        });
+      }
       setBoard(newBoard);
     }
   };
