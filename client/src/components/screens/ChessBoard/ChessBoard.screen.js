@@ -3,7 +3,6 @@ import { getNextMovements } from '../../../api/chess.api';
 import CoordinatorBorder from '../../base/CoordinatorBorder/CoordinatorBorder.js';
 import Square from '../../base/Square/Square.js';
 import { defaultBoard } from '../../../shared/BoardHelper.js';
-import PropTypes from 'prop-types';
 import createStyles from './ChessBoard.styles';
 import _ from 'lodash';
 
@@ -12,28 +11,28 @@ const ChessBoard = (props) => {
   const classes = createStyles(props);
 
   useEffect(() => {
+    const createBoard = async () => {
+      let newBoard = _.cloneDeep(defaultBoard);
+
+      const randomPosition = Object.keys(newBoard)[
+        Math.floor(Math.random() * 64)
+      ];
+
+      newBoard[randomPosition].piece = 'knight';
+
+      const nextMoves = await fetchAllowedMovements('knight', randomPosition);
+
+      if (nextMoves) {
+        nextMoves.forEach((allowedMove) => {
+          newBoard[allowedMove].isNextMove = true;
+        });
+      }
+
+      setBoard(newBoard);
+    };
+
     createBoard();
   }, []);
-
-  const createBoard = async () => {
-    let newBoard = _.cloneDeep(defaultBoard);
-
-    const randomPosition = Object.keys(newBoard)[
-      Math.floor(Math.random() * 64)
-    ];
-
-    newBoard[randomPosition].piece = 'knight';
-
-    const nextMoves = await fetchAllowedMovements('knight', randomPosition);
-
-    if (nextMoves) {
-      nextMoves.forEach((allowedMove) => {
-        newBoard[allowedMove].isNextMove = true;
-      });
-    }
-
-    setBoard(newBoard);
-  };
 
   const fetchAllowedMovements = async (piece, pos) => {
     try {
@@ -71,6 +70,7 @@ const ChessBoard = (props) => {
             const square = board[key];
             return (
               <Square
+                key={key}
                 onClick={() => handleSquareClick(key, board[key])}
                 color={square.color}
                 piece={square.piece}
@@ -85,7 +85,5 @@ const ChessBoard = (props) => {
     </div>
   );
 };
-
-ChessBoard.propTypes = {};
 
 export default ChessBoard;

@@ -9,14 +9,22 @@ const CoordinatorBorder = (props) => {
 
   return orientation === 'horizontal' ? (
     <div className={classes.borderHorizontal} {...rest}>
-      {LETTERS_POS.map((letter) => {
-        return <span className={classes.coordinator}>{letter}</span>;
+      {LETTERS_POS.map((letter, index) => {
+        return (
+          <span key={index} className={classes.coordinator}>
+            {letter}
+          </span>
+        );
       })}
     </div>
   ) : (
     <div className={classes.borderVertical} {...rest}>
-      {NUMBERS_POS.map((letter) => {
-        return <span className={classes.coordinator}>{letter}</span>;
+      {NUMBERS_POS.map((number, index) => {
+        return (
+          <span key={index} className={classes.coordinator}>
+            {number}
+          </span>
+        );
       })}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import knightIcon from '../../../assets/knight.png';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,9 @@ const Square = (props) => {
 
   return (
     <div className={classes.rootSquare} {...rest}>
-      {piece && <img className={classes.pieceImg} src={knightIcon} />}
+      {piece && (
+        <img alt='knight piece' className={classes.pieceImg} src={knightIcon} />
+      )}
     </div>
   );
 };

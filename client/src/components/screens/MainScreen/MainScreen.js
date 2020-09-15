@@ -8,12 +8,16 @@ const MainsScreen = (props) => {
   const classes = createStyles(props);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} {...props}>
       <Switch>
         <Route exact path='/' render={(props) => <ChessBoard {...props} />} />
       </Switch>
     </div>
   );
+};
+
+MainsScreen.prototype = {
+  props: PropTypes.object
 };
 
 export default MainsScreen;
