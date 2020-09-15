@@ -1,7 +1,6 @@
-import { withStyles } from '@material-ui/styles';
-import ChessBoard from './ChessBoard';
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = (theme) => {
+const createStyles = makeStyles((theme) => {
   return {
     chessBoardRoot: {
       width: '700px'
@@ -17,6 +16,6 @@ const styles = (theme) => {
       display: 'flex'
     }
   };
-};
+});
 
-export default withStyles(styles)(ChessBoard);
+export default createStyles;

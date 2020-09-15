@@ -3,10 +3,13 @@ import { getNextMovements } from '../../../api/chess.api';
 import CoordinatorBorder from '../../base/CoordinatorBorder/CoordinatorBorder.js';
 import Square from '../../base/Square/Square.js';
 import { defaultBoard } from '../../../shared/BoardHelper.js';
+import PropTypes from 'prop-types';
+import createStyles from './ChessBoard.styles';
 import _ from 'lodash';
 
-const ChessBoard = ({ classes }) => {
+const ChessBoard = (props) => {
   const [board, setBoard] = useState({});
+  const classes = createStyles(props);
 
   useEffect(() => {
     createBoard();
@@ -77,5 +80,7 @@ const ChessBoard = ({ classes }) => {
     </div>
   );
 };
+
+ChessBoard.propTypes = {};
 
 export default ChessBoard;

@@ -1,14 +1,11 @@
-import { withStyles } from "@material-ui/styles";
-import MainScreen from "./MainScreen";
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = (theme) => {
-  return {
-    root: {
-      backgroundColor: "white",
-      minHeight: "calc(100vh - 64px)",
-      marginTop: " 64px",
-    },
-  };
-};
+const createStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: 'white',
+    minHeight: 'calc(100vh - 64px)',
+    marginTop: ' 64px'
+  }
+}));
 
-export default withStyles(styles)(MainScreen);
+export default createStyles;

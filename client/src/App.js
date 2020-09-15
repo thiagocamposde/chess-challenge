@@ -1,9 +1,9 @@
-import React from "react";
-import MainsScreen from "./components/screens/MainScreen";
-import theme from "./Theme";
-import { ThemeProvider } from "@material-ui/styles";
-import { BrowserRouter } from "react-router-dom";
-import NavBar from "../src/components/base/NavBar";
+import React from 'react';
+import MainsScreen from './components/screens/MainScreen/MainScreen';
+import theme from './Theme';
+import { ThemeProvider } from '@material-ui/styles';
+import { BrowserRouter } from 'react-router-dom';
+import NavBar from '../src/components/base/NavBar/NavBar';
 
 function App() {
   return (
