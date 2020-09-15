@@ -86,3 +86,5 @@ module.exports.VALID_POSITIONS = [
   'H7',
   'H8'
 ];
+
+module.exports.VALID_PIECES = ['knight'];

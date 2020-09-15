@@ -40,7 +40,7 @@ const ChessBoard = (props) => {
       const response = await getNextMovements(piece, pos);
       return response.data;
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
