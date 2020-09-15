@@ -9,7 +9,7 @@ exports.calcAllowedMoves = async (req, res) => {
     return res.status(400).json(errors.array());
   } else {
     const { piece, position } = req.params;
-    let response = chessService.calcAllowedMovies(position, piece);
+    let response = chessService.calcAllowedMoves(position, piece);
     res.send(response);
   }
 };

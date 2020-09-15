@@ -19,7 +19,7 @@ class ChessService {
    * @param {string} startPositionAlg posição atual da peça (Ex.: A1)
    * @param {string} chessPiece identifica o tipo da peça (Ex.: knight)
    */
-  calcAllowedMovies(startPositionAlg, chessPiece) {
+  calcAllowedMoves(startPositionAlg, chessPiece) {
     const startPosition = algebraicToXY(startPositionAlg);
     const allowedMoves = [];
 
