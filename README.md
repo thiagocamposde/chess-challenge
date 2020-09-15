@@ -23,31 +23,40 @@ Each module/screen has it's own api file located at /api, wich is responsible fo
 
 ## Backend:
 
-I tried to use the most basic structure I could, using express to handle the API. In the future this structure would probably change, with entities, services and controllers been introduced.
+I tried to use a basic structure approach, using express to handle the API.
+I split the structure in 4 main folders:
+
+1. Routes: define the routers of the application. Here I avoid business logic code.
+2. Controllers: Controllers are responsible for validation, call services when needed and prepare the response to return
+3. Services: Services is were the business logic are placed. In this case is were the next movement calculation was placed
+4. Shared: Contains any constants or utility that could be potentially used through the application
 
 # Third-party libraries
 
-## Material-ui
+Some libraries and tools worth to mention:
 
-Used in frontend for basic style and couple of components, grid system and responsive concerns
-
-## Axios
-
-Axios is a great tool to use with react and node, providing easy ways to handle and manipulate requests
-
-Other libraries and tools worth to mention are:
-
-- Standard: for linting purposes
 - React Router: Essential for routing components in react
 - Nodemon: Usefull for auto refresh the server
-- Moment: Usefull to manipulate and format dates
+- Lodash: Utility for array and object manipulation
+- express-validator: For api params validation purposes
+- Jest: A JavaScript testing framework designed to ensure correctness of code
 
 # Installing and running
 
-1. in root directory: 'npm install';
+In order to run this application you should:
+
+1. in root directory type: 'npm install';
 2. cd /client;
 3. npm install;
 
-After install, in root directory run:
+After installing the front end dependences, in root directory run:
 
-4. 'npm run dev' (this will run back and front together
+4. 'npm run dev' (this will run back and front together)
+
+At this point you should be able to see the application running at http://localhost:3000/
+
+# Running tests
+
+to run backend tests type:
+
+'npm run test-dev'
