@@ -46,7 +46,7 @@ Some libraries and tools worth to mention:
 In order to run this application you should:
 
 1. in root directory type: 'npm install';
-2. cd /client;
+2. cd client;
 3. npm install;
 
 After installing the front end dependences, in root directory run:
